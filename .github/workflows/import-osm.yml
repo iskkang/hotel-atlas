@@ -25,7 +25,9 @@ jobs:
         run: |
           python - <<'PY'
           import os,urllib.parse
-          url=os.environ["EXTRACT_URL"].strip()\n          if url in {"", "1"}:\n              raise SystemExit("Invalid extract URL. Run workflow with the default South Korea URL, not 1.")
+          url=os.environ["EXTRACT_URL"].strip()
+          if url in {"", "1"}:
+              raise SystemExit("Invalid extract URL. Run workflow with the default South Korea URL, not 1.")
           parsed=urllib.parse.urlparse(url)
           if parsed.scheme!="https" or parsed.hostname not in {"download.geofabrik.de"} or not parsed.path.endswith(".osm.pbf"):
               raise SystemExit("Only HTTPS Geofabrik .osm.pbf extracts are accepted")
