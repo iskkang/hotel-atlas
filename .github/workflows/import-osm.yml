@@ -1,0 +1,52 @@
+name: Import OSM hotel extract (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      extract_url:
+        description: 'HTTPS URL to a trusted .osm.pbf regional extract (e.g. Geofabrik)'
+        required: true
+        type: string
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install osmium==4.0.2
+      - name: Download trusted regional extract
+        env:
+          EXTRACT_URL: ${{ inputs.extract_url }}
+        run: |
+          python - <<'PY'
+          import os,urllib.parse
+          url=os.environ["EXTRACT_URL"]
+          parsed=urllib.parse.urlparse(url)
+          if parsed.scheme!="https" or parsed.hostname not in {"download.geofabrik.de"} or not parsed.path.endswith(".osm.pbf"):
+              raise SystemExit("Only HTTPS Geofabrik .osm.pbf extracts are accepted")
+          PY
+          curl --fail --location --retry 2 --max-time 600 --output /tmp/region.osm.pbf "$EXTRACT_URL"
+      - name: Generate hotel candidates
+        run: python scripts/import_osm.py /tmp/region.osm.pbf --output /tmp/hotels.json
+      - name: Merge with existing data by OSM ID
+        run: |
+          python - <<'PY'
+          import json,datetime,pathlib
+          target=pathlib.Path("data/hotels.json")
+          old=json.loads(target.read_text())
+          new=json.loads(pathlib.Path("/tmp/hotels.json").read_text())
+          by_id={x["id"]:x for x in old["hotels"]}
+          by_id.update({x["id"]:x for x in new["hotels"]})
+          target.write_text(json.dumps({"updated_at":datetime.datetime.now(datetime.timezone.utc).date().isoformat(),"source":"OpenStreetMap (ODbL)","hotels":sorted(by_id.values(),key=lambda x:(x["group"],x["name"],x["id"]))},ensure_ascii=False,indent=2)+"\n")
+          print("Total hotels:",len(by_id))
+          PY
+      - name: Commit refreshed catalog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/hotels.json
+          if ! git diff --cached --quiet; then git commit -m "Import OSM hotel candidates"; git push; fi
