@@ -1,0 +1,7 @@
+import { groups } from './data/brands.js';
+const $ = id => document.getElementById(id);
+const groupSelect=$('group');
+groups.forEach(g=>{const o=document.createElement('option');o.value=g.id;o.textContent=g.name;groupSelect.append(o)});
+function render(){const q=$('search').value.trim().toLowerCase(), selected=groupSelect.value;const matches=groups.flatMap(g=>g.brands.filter(b=>(!selected||g.id===selected)&&(!q||b.toLowerCase().includes(q)||g.name.toLowerCase().includes(q))).map(b=>({brand:b,group:g.name})));$('brands').replaceChildren(...matches.map(x=>{const card=document.createElement('article');card.className='card';const small=document.createElement('div');small.className='group';small.textContent=x.group;const h=document.createElement('h3');h.textContent=x.brand;const p=document.createElement('p');p.textContent='개별 호텔 데이터 준비 중';card.append(small,h,p);return card}));if(!matches.length)$('brands').textContent='검색 결과가 없습니다.'}
+$('search').addEventListener('input',render);groupSelect.addEventListener('change',render);
+const loyalty=$('loyalty');groups.forEach(g=>{const a=document.createElement('a');a.href=g.loyaltyUrl;a.target='_blank';a.rel='noopener noreferrer';const strong=document.createElement('strong');strong.textContent=g.program;const span=document.createElement('span');span.textContent='공식 혜택 확인 ↗';a.append(strong,span);loyalty.append(a)});$('year').textContent=new Date().getFullYear();render();
