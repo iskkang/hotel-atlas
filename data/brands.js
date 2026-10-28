@@ -1,0 +1,8 @@
+// Curated starter catalog, not a complete or verified live directory.
+export const groups=[
+{id:'marriott',name:'Marriott International',program:'Marriott Bonvoy',loyaltyUrl:'https://www.marriott.com/loyalty.mi',brands:['Marriott Hotels','JW Marriott','The Ritz-Carlton','St. Regis','Sheraton','Westin','W Hotels','Le Méridien','Renaissance Hotels','Courtyard','Fairfield by Marriott','Aloft Hotels','Moxy Hotels','Residence Inn']},
+{id:'hilton',name:'Hilton',program:'Hilton Honors',loyaltyUrl:'https://www.hilton.com/en/hilton-honors/',brands:['Hilton Hotels & Resorts','Waldorf Astoria','Conrad Hotels & Resorts','LXR Hotels & Resorts','DoubleTree by Hilton','Hilton Garden Inn','Hampton by Hilton','Canopy by Hilton','Curio Collection by Hilton','Embassy Suites by Hilton']},
+{id:'hyatt',name:'Hyatt',program:'World of Hyatt',loyaltyUrl:'https://world.hyatt.com/',brands:['Park Hyatt','Grand Hyatt','Hyatt Regency','Andaz','Hyatt Centric','Hyatt Place','Hyatt House','Alila','Thompson Hotels']},
+{id:'ihg',name:'IHG Hotels & Resorts',program:'IHG One Rewards',loyaltyUrl:'https://www.ihg.com/onerewards/content/us/en/home',brands:['InterContinental','Regent Hotels & Resorts','Six Senses','Kimpton Hotels & Restaurants','Hotel Indigo','Crowne Plaza','voco','Holiday Inn','Holiday Inn Express','Staybridge Suites']},
+{id:'accor',name:'Accor',program:'ALL Accor',loyaltyUrl:'https://all.accor.com/',brands:['Raffles','Fairmont','Sofitel','Pullman','Swissôtel','Mövenpick','Novotel','Mercure','ibis','ibis Styles','ibis budget']}
+];
