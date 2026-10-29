@@ -68,8 +68,7 @@ function renderHub() {
     row.append(el('span', null, p.short || p.program), track, el('span', 'num', String(p.breakfastNights)));
     bars.append(row);
   }
-  if (withNights.length) bars.prepend(el('div', 'bar-row', null));
-  if (withNights.length) bars.firstChild.append(el('span'), el('span', null, 'Nights a year for breakfast'), el('span'));
+  if (withNights.length) bars.prepend(el('p', 'tile-sub', 'Nights a year until breakfast is included'));
 
   const dots = $('hubChainDots');
   for (const g of groups) {
@@ -128,7 +127,7 @@ function renderCards() {
   for (const c of edition.cards) {
     const card = el('article', 'bank-card');
     const tag = el('span', 'prog-tag');
-    tag.append(dot(c.program), programName(c.program));
+    tag.append(dot(c.program), c.programLabel || programName(c.program));
     card.append(el('span', 'bank', c.bank), el('h3', null, c.card), tag);
     const dl = el('dl');
     const row = (k, v) => { if (!v) return; dl.append(el('dt', null, k), el('dd', null, v)); };
@@ -157,6 +156,7 @@ function renderPromos() {
     const when = el('div', 'when');
     if (pr.stayTo) when.append(el('b', null, 'Stay by ' + shortDate(pr.stayTo)));
     if (pr.stayFrom) when.append('from ' + shortDate(pr.stayFrom));
+    if (!pr.stayTo && !pr.stayFrom) when.append(el('b', null, 'Ongoing'));
     const links = el('div', 'links');
     links.append(el('span', 'pill' + (pr.register ? ' reg' : ''), pr.register ? 'Register first' + (pr.registerBy ? ' by ' + shortDate(pr.registerBy) : '') : 'No registration'));
     if (pr.region) links.append(el('span', 'pill', pr.region));
