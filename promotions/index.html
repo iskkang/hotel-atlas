@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Promotions · Hotel Atlas</title>
+<meta name="description" content="Hotel loyalty promotions open now for stays in the UAE: bonus points and status matches from Marriott, Hilton, Hyatt, IHG and Accor.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header id="siteHeader"></header>
+
+<main class="wrap page">
+  <h1>Promotions</h1>
+  <p class="lede">Offers open now that count for stays at hotels in the UAE. Most need registration before the stay; only nights after you register count.</p>
+  <p class="checked" id="checkedLine"></p>
+
+  <div class="chips" id="promoChips" role="group" aria-label="Filter by program"></div>
+
+  <h2 class="sub" id="openHead">Bonus points open now</h2>
+  <div class="promo-grid" id="openGrid"></div>
+
+  <h2 class="sub" id="statusHead">Status matches and challenges</h2>
+  <div class="promo-grid" id="statusGrid"></div>
+
+  <p class="note" id="promosNote"></p>
+
+  <section class="sources">
+    <h2 class="sub">Sources</h2>
+    <ul id="sourceList"></ul>
+  </section>
+</main>
+
+<footer id="siteFooter"></footer>
+<script type="module" src="/js/promotions.js"></script>
+</body>
+</html>

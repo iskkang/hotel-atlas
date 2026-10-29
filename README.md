@@ -7,7 +7,18 @@ An English hub on hotel elite status for people who live in the United Arab Emir
 - **Tier guide**: the 2026 ladders of Marriott Bonvoy, Hilton Honors, World of Hyatt, IHG One Rewards and ALL Accor, where breakfast and lounge access start, and rules that apply at UAE hotels.
 - **UAE hotel cards**: credit cards from UAE banks that earn hotel points or grant status.
 - **Promotions**: offers open now that count for UAE stays.
-- **Hotel map**: about 31,000 chain hotels from open data, with a UAE filter.
+- **Hotel map**: about 31,000 chain hotels from open data, browsable by region and country.
+
+### Pages
+| Path | Page | Script |
+|---|---|---|
+| `/` | Home hub with a tile per section | `js/home.js` |
+| `/tiers/` | Tier guide: Basics, Detailed guides, Compare tabs (`#basics`, `#guides`, `#compare`) | `js/tiers.js` |
+| `/promotions/` | Promotions with program filter | `js/promotions.js` |
+| `/cards/` | UAE cards table and cards grouped by program | `js/cards.js` |
+| `/map/` | Full-screen map with region → country panel (`#AE`, `#r-me`) | `js/map.js` |
+
+Shared header, footer and helpers are in `js/common.js`; styles in `styles.css`. Country → region mapping is `data/regions.js` (from `world-countries`, UN subregions). No build step.
 
 Edition content lives in `data/edition-ae.js`. Every tier, card and promotion carries the source it was checked against and the check date; nothing is shown without a source. Programs and banks change terms often, so re-check before each update.
 

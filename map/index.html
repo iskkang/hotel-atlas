@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hotel map · Hotel Atlas</title>
+<meta name="description" content="Map of about 31,000 Marriott, Hilton, Hyatt, IHG and Accor hotels, browsable by region and country.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body class="app-page">
+<header id="siteHeader"></header>
+
+<div class="map-app">
+  <div class="map-chips" id="mapChips" role="group" aria-label="Programs shown on the map"></div>
+  <div class="map-body">
+    <div id="map" class="map-canvas" role="region" aria-label="Hotel map"></div>
+    <aside class="map-panel" id="mapPanel" aria-live="polite">
+      <div class="panel-head">
+        <button class="back" id="panelBack" type="button" aria-label="Back" hidden>←</button>
+        <h1 id="panelTitle">Where are you going?</h1>
+      </div>
+      <label class="sr-only" for="panelSearch">Search</label>
+      <input id="panelSearch" type="search" placeholder="Country, city or hotel" autocomplete="off">
+      <div class="panel-body" id="panelBody"><p class="note">Loading hotels…</p></div>
+      <details class="panel-about">
+        <summary>About the data</summary>
+        <p>Hotel locations come from <a href="https://www.alltheplaces.xyz/" target="_blank" rel="noopener">All the Places</a> (CC0), refreshed weekly, plus <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> (ODbL). They are not verified; check the official page before you book.</p>
+        <p>Upstream Marriott data is still missing JW Marriott, W Hotels, Westin, Autograph Collection, The Luxury Collection and Tribute Portfolio.</p>
+        <p id="dataStatus"></p>
+      </details>
+    </aside>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+<script type="module" src="/js/map.js"></script>
+</body>
+</html>

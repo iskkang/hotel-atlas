@@ -15,6 +15,7 @@ already in the output file is skipped and its previous records are kept,
 so one broken upstream run never wipes a hotel group from the map.
 """
 import argparse
+import collections
 import datetime
 import json
 import math
@@ -175,6 +176,9 @@ def main():
         "source": "All the Places (CC0)",
         "source_url": "https://www.alltheplaces.xyz/",
         "spiders": spiders_meta,
+        # Small summaries in the header so pages can read counts without loading every hotel.
+        "groups": dict(sorted(collections.Counter(h["group"] for h in hotels).items())),
+        "countries": dict(sorted(collections.Counter(h["country"] or "??" for h in hotels).items())),
     }
     out_path.parent.mkdir(parents=True, exist_ok=True)
     write(out_path, payload, hotels)

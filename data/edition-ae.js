@@ -9,6 +9,8 @@ export const edition = {
   programs: [
     {
       id: 'hilton',
+      // Nights a year needed for each tier, in tier order (null = not reachable by nights).
+      tierNights: [0, 10, 25, 50, 80],
       program: 'Hilton Honors',
       short: 'Hilton',
       breakfastFrom: 'Gold',
@@ -33,6 +35,8 @@ export const edition = {
     },
     {
       id: 'marriott',
+      // Nights a year needed for each tier, in tier order (null = not reachable by nights).
+      tierNights: [0, 10, 25, 50, 75, 100],
       program: 'Marriott Bonvoy',
       short: 'Marriott',
       breakfastFrom: 'Platinum Elite',
@@ -57,6 +61,8 @@ export const edition = {
     },
     {
       id: 'hyatt',
+      // Nights a year needed for each tier, in tier order (null = not reachable by nights).
+      tierNights: [0, 10, 30, 60],
       program: 'World of Hyatt',
       short: 'Hyatt',
       breakfastFrom: 'Globalist',
@@ -79,6 +85,8 @@ export const edition = {
     },
     {
       id: 'ihg',
+      // Nights a year needed for each tier, in tier order (null = not reachable by nights).
+      tierNights: [0, 10, 20, 40, 70],
       program: 'IHG One Rewards',
       short: 'IHG',
       breakfastFrom: 'Diamond Elite',
@@ -101,6 +109,8 @@ export const edition = {
     },
     {
       id: 'accor',
+      // Nights a year needed for each tier, in tier order (null = not reachable by nights).
+      tierNights: [0, 10, 30, 60, null, null],
       program: 'ALL – Accor Live Limitless',
       short: 'Accor',
       breakfastFrom: 'Diamond',
