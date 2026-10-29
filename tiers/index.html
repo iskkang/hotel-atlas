@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tier guide · Hotel Atlas</title>
+<meta name="description" content="Elite tiers of Marriott Bonvoy, Hilton Honors, World of Hyatt, IHG One Rewards and ALL Accor for 2026, with where breakfast and lounge access start at UAE hotels.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header id="siteHeader"></header>
+
+<main class="wrap page">
+  <nav class="tabs" aria-label="Tier guide sections">
+    <a href="#basics" data-tab="basics">Basics</a>
+    <a href="#guides" data-tab="guides">Detailed guides</a>
+    <a href="#compare" data-tab="compare">Compare tiers</a>
+  </nav>
+
+  <section class="tab-panel" data-panel="basics">
+    <h1>How hotel status works</h1>
+    <p class="lede"><b>Each chain runs a free loyalty program</b> and sorts members into tiers by how much they stay. You start at the bottom when you join, move up as nights add up over a calendar year, and better tiers bring better treatment at the hotel.</p>
+
+    <h2 class="sub">The five programs at a glance</h2>
+    <div class="ladder-chart-wrap">
+      <div class="ladder-chart" id="ladderChart" role="table" aria-label="Nights a year needed for each tier"></div>
+    </div>
+    <p class="note"><span class="key-hit" aria-hidden="true"></span> Outlined tier: where daily breakfast starts at UAE hotels. Nights count per calendar year; most programs also offer a stays, spend or points route, shown in the detailed guides.</p>
+
+    <h2 class="sub">How you move up</h2>
+    <div class="trio">
+      <article><h3>What counts</h3><p>Paid nights booked through the chain count everywhere. Some programs also count stays, spend or base points, and award nights count at some chains but not others.</p></article>
+      <article><h3>When it resets</h3><p>Qualification runs on the calendar year. A tier you reach is usually kept through the following year, so status earned in 2026 carries you through 2027.</p></article>
+      <article><h3>Shortcuts</h3><p>Some <a href="/cards/">UAE credit cards</a> include status or elite night credits, and <a href="/promotions/">status matches</a> can lift you a tier on the strength of another program.</p></article>
+    </div>
+
+    <h2 class="sub">Benefits that change with tier</h2>
+    <div class="benefit-grid" id="benefitGrid"></div>
+
+    <h2 class="sub">Before you count on a benefit</h2>
+    <ul class="caveats">
+      <li>Tier benefits usually apply only to bookings made on the chain's own site or app, not through travel agencies or booking sites.</li>
+      <li>Upgrades and late checkout depend on what the hotel has free on the day.</li>
+      <li>Some brands, resorts and partner hotels give less or nothing. The detailed guides list the exceptions that matter in the UAE.</li>
+    </ul>
+  </section>
+
+  <section class="tab-panel" data-panel="guides" hidden>
+    <h1>Detailed guides</h1>
+    <p class="lede">Every tier of each program for the 2026 qualification year, with the rules that apply at hotels in the UAE.</p>
+    <div class="chips" id="programChips" role="tablist" aria-label="Program"></div>
+    <div id="programDetail"></div>
+  </section>
+
+  <section class="tab-panel" data-panel="compare" hidden>
+    <h1>Compare tiers</h1>
+    <p class="lede">Where the benefits that matter on a stay start, program by program.</p>
+    <div class="table-wrap">
+      <table class="compare">
+        <thead><tr><th scope="col">Program</th><th scope="col">Breakfast from</th><th scope="col">Lounge from</th><th scope="col">Top tier</th></tr></thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+    </div>
+    <h2 class="sub">Nights a year until breakfast is included</h2>
+    <div class="compare-bars wide" id="compareBars"></div>
+    <p class="note">Accor is left out: in the UAE its daily breakfast tier is reached on Status Points only (26,000 a year).</p>
+  </section>
+
+  <section class="sources">
+    <h2 class="sub">Sources</h2>
+    <ul id="sourceList"></ul>
+  </section>
+</main>
+
+<footer id="siteFooter"></footer>
+<script type="module" src="/js/tiers.js"></script>
+</body>
+</html>

@@ -11,22 +11,10 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<header class="top">
-  <div class="top-inner">
-    <a class="logo" href="/" aria-label="Hotel Atlas home">Hotel<span>Atlas</span></a>
-    <span class="edition-chip" title="Benefits and cards are checked for UAE residents">UAE edition</span>
-    <nav aria-label="Sections">
-      <a href="#tiers">Tier guide</a>
-      <a href="#cards">Cards</a>
-      <a href="#promos">Promotions</a>
-      <a href="#map-section">Hotel map</a>
-    </nav>
-  </div>
-</header>
+<header id="siteHeader"></header>
 
 <main>
   <section class="intro wrap">
@@ -36,100 +24,36 @@
   </section>
 
   <section class="hub wrap" aria-label="Overview">
-    <a class="tile tile-tiers" href="#tiers">
+    <a class="tile tile-tiers" href="/tiers/">
       <div class="tile-head"><h2>Tier guide</h2><span class="go" aria-hidden="true">→</span></div>
-      <p class="tile-sub">Where breakfast starts in each program</p>
+      <p class="tile-sub">Where breakfast starts at UAE hotels</p>
       <ol class="ladders" id="hubLadders"></ol>
     </a>
-    <a class="tile tile-promos" href="#promos">
+    <a class="tile tile-promos" href="/promotions/">
       <div class="tile-head"><h2>Promotions</h2><span class="big num" id="hubPromoCount">–</span></div>
       <p class="tile-sub">Open now for stays in the UAE</p>
       <ul class="mini-list" id="hubPromos"></ul>
     </a>
-    <a class="tile tile-map" href="#map-section">
-      <div class="tile-head"><h2>Five-chain map</h2><span class="go" aria-hidden="true">→</span></div>
+    <a class="tile tile-map" href="/map/">
+      <div class="tile-head"><h2>Hotel map</h2><span class="go" aria-hidden="true">→</span></div>
       <p class="big num" id="hubHotelCount">–</p>
       <p class="tile-sub" id="hubHotelSub">chain hotels worldwide</p>
       <div class="chain-dots" id="hubChainDots"></div>
     </a>
-    <a class="tile tile-cards" href="#cards">
-      <div class="tile-head"><h2>UAE hotel cards</h2><span class="big num" id="hubCardCount">–</span></div>
+    <a class="tile tile-cards" href="/cards/">
+      <div class="tile-head"><h2>UAE cards</h2><span class="big num" id="hubCardCount">–</span></div>
       <p class="tile-sub">Cards issued in the UAE that earn hotel points or status</p>
       <ul class="mini-list" id="hubCards"></ul>
     </a>
-    <a class="tile tile-compare" href="#compare">
+    <a class="tile tile-compare" href="/tiers/#compare">
       <div class="tile-head"><h2>Compare tiers</h2><span class="go" aria-hidden="true">→</span></div>
-      <p class="tile-sub">Nights needed, breakfast and lounge access side by side</p>
+      <p class="tile-sub">Nights a year until breakfast is included</p>
       <div class="compare-bars" id="hubBars" aria-hidden="true"></div>
     </a>
   </section>
-
-  <section id="tiers" class="section wrap">
-    <div class="section-head">
-      <h2>Tier guide</h2>
-      <p>Each program's ladder for the 2026 qualification year, with the benefits that matter on a stay and the rules that apply at hotels in the UAE.</p>
-    </div>
-    <div class="table-wrap" id="compare">
-      <table class="compare">
-        <caption>Where the useful benefits start</caption>
-        <thead><tr><th scope="col">Program</th><th scope="col">Breakfast from</th><th scope="col">Lounge from</th><th scope="col">Top tier</th></tr></thead>
-        <tbody id="compareBody"></tbody>
-      </table>
-    </div>
-    <div class="programs" id="programs"></div>
-  </section>
-
-  <section id="cards" class="section wrap">
-    <div class="section-head">
-      <h2>UAE hotel cards</h2>
-      <p>Credit cards issued by UAE banks that earn hotel points or come with elite status. Fees and salary minimums are as the bank lists them; offers change often, so confirm on the bank's page before applying.</p>
-    </div>
-    <div class="card-grid" id="cardGrid"></div>
-    <p class="note" id="cardsNote"></p>
-  </section>
-
-  <section id="promos" class="section wrap">
-    <div class="section-head">
-      <h2>Promotions</h2>
-      <p>Offers open now that count for stays at hotels in the UAE. Most need registration before the stay.</p>
-    </div>
-    <div class="promo-list" id="promoList"></div>
-    <p class="note" id="promosNote"></p>
-  </section>
-
-  <section id="map-section" class="section wrap">
-    <div class="section-head">
-      <h2>Hotel map</h2>
-      <p>Marriott, Hilton, Hyatt, IHG and Accor hotels from open data. Locations aren't verified; check the official page before you book.</p>
-    </div>
-    <div class="controls">
-      <label class="sr-only" for="hotelSearch">Search hotels or cities</label>
-      <input id="hotelSearch" type="search" placeholder="Hotel, city or country — e.g. Dubai" autocomplete="off">
-      <label class="sr-only" for="hotelGroup">Program</label>
-      <select id="hotelGroup"><option value="">All programs</option></select>
-      <button class="chip-btn" id="uaeOnly" type="button" aria-pressed="false">UAE only</button>
-    </div>
-    <div id="map" class="hotel-map" role="region" aria-label="Hotel map"></div>
-    <p id="mapHint" class="map-hint">Move or zoom the map to explore.</p>
-    <div class="mapmeta"><strong id="hotelCount" class="num">0 hotels</strong><span id="dataStatus">Loading hotel data…</span></div>
-    <div id="hotelResults" class="hotel-results"></div>
-    <div class="pagination"><button id="prevPage" type="button">Previous</button><span id="pageStatus" class="num">0 / 0</span><button id="nextPage" type="button">Next</button></div>
-    <p class="note">Hotel locations: <a href="https://www.alltheplaces.xyz/" target="_blank" rel="noopener">All the Places</a> (CC0) and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL). Upstream Marriott data is still missing JW Marriott, W Hotels, Westin, Autograph Collection, The Luxury Collection and Tribute Portfolio.</p>
-  </section>
-
-  <section class="section wrap sources" id="sources">
-    <h2>Sources</h2>
-    <p>Every benefit, card and promotion on this page links to where it was checked. Programs change terms during the year; the official page always wins.</p>
-    <ul id="sourceList"></ul>
-  </section>
 </main>
 
-<footer class="wrap">
-  <p>© <span id="year"></span> Hotel Atlas · Independent. Not affiliated with or endorsed by any hotel group or bank.</p>
-  <p class="loyalty-links" id="loyalty"></p>
-</footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script type="module" src="/app.js"></script>
+<footer id="siteFooter"></footer>
+<script type="module" src="/js/home.js"></script>
 </body>
 </html>
