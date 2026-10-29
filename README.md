@@ -2,14 +2,14 @@
 
 Static, Netlify-ready hotel discovery MVP, hosted at https://hotelatlas.netlify.app.
 
-## What works
-- Search and filter starter brand catalog for Marriott, Hilton, Hyatt, IHG and Accor.
-- Browse about 31,000 chain hotels on a Leaflet map, filter by group, name and city.
-- Hotel data comes from two open sources: All the Places (CC0) and OpenStreetMap (ODbL). OSM records within ~150 m of an All the Places hotel from the same group are merged in the browser.
-- Each property links to its official chain page (All the Places) or its OSM source.
-- Link to official loyalty program websites.
+## What it is
+An English hub on hotel elite status for people who live in the United Arab Emirates (the "UAE edition"):
+- **Tier guide**: the 2026 ladders of Marriott Bonvoy, Hilton Honors, World of Hyatt, IHG One Rewards and ALL Accor, where breakfast and lounge access start, and rules that apply at UAE hotels.
+- **UAE hotel cards**: credit cards from UAE banks that earn hotel points or grant status.
+- **Promotions**: offers open now that count for UAE stays.
+- **Hotel map**: about 31,000 chain hotels from open data, with a UAE filter.
 
-No fabricated hotels or unverified benefits: every pin comes from one of the two open datasets.
+Edition content lives in `data/edition-ae.js`. Every tier, card and promotion carries the source it was checked against and the check date; nothing is shown without a source. Programs and banks change terms often, so re-check before each update.
 
 ## Import hotel data
 

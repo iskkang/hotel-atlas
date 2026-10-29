@@ -1,1 +1,135 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Hotel Atlas: 글로벌 호텔 그룹, 브랜드, 지도 탐색"><title>Hotel Atlas | 글로벌 호텔 탐색</title><link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"></head><body><header class="top"><a class="logo" href="/">HOTEL<span>ATLAS</span></a><nav><a href="#explore">브랜드</a><a href="#hotels">호텔 지도</a><a href="#tiers">멤버십</a></nav><span class="status">BETA · OPEN DATA</span></header><main><section class="hero"><div class="eyebrow">YOUR STAY, SMARTER</div><h1>어디서 머물든,<br><em>혜택은 더 똑똑하게.</em></h1><p>호텔 그룹과 브랜드를 탐색하고, 출처가 확인된 호텔 위치를 지도에서 찾아보세요.</p><a class="cta" href="#hotels">호텔 지도 보기 <span>↗</span></a><div class="hero-note">호텔 데이터는 수집·검증 단계입니다. 실시간 요금과 호텔별 혜택은 제공하지 않습니다.</div></section><section id="hotels" class="section"><span class="eyebrow">PROPERTY EXPLORER</span><h2>호텔 지도</h2><p>All the Places와 OpenStreetMap 공개 데이터를 합쳐 표시합니다. 위치는 검증 전 데이터이니 예약 전 공식 페이지에서 확인하세요.</p><div class="controls"><input id="hotelSearch" placeholder="호텔명 또는 도시 검색" aria-label="호텔명 또는 도시 검색"><select id="hotelGroup" aria-label="호텔 그룹"><option value="">전체 그룹</option></select></div><div id="map" class="hotel-map" role="region" aria-label="호텔 지도"></div><p id="mapHint" class="map-hint">지도를 이동하거나 확대해 호텔을 탐색하세요.</p><div class="mapmeta"><strong id="hotelCount">0개 호텔</strong><span id="dataStatus">호텔 데이터 확인 중…</span></div><div id="hotelResults" class="hotel-results"></div><div class="pagination"><button id="prevPage" type="button">이전</button><span id="pageStatus">0 / 0</span><button id="nextPage" type="button">다음</button></div><p class="disclaimer">호텔 위치 데이터: <a href="https://www.alltheplaces.xyz/" target="_blank" rel="noopener">All the Places</a> (CC0), <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL). 지도 타일 사용은 공급자 정책을 따릅니다. 메리어트의 JW 메리어트·W·웨스틴·오토그래프 컬렉션·럭셔리 컬렉션·트리뷰트 포트폴리오는 원본 데이터 보강 중이라 일부만 표시됩니다.</p></section><section id="explore" class="section"><div class="sectionhead"><div><span class="eyebrow">EXPLORE BRANDS</span><h2>호텔 그룹별 브랜드</h2><p>5대 호텔 그룹의 대표 브랜드를 살펴보세요.</p></div><div class="count">5 HOTEL GROUPS</div></div><div class="controls"><input id="search" aria-label="브랜드 검색" placeholder="브랜드 검색 (예: Novotel, Hyatt)" autocomplete="off"><select id="group" aria-label="호텔 그룹"><option value="">전체 호텔 그룹</option></select></div><div id="brands" class="cards" aria-live="polite"></div><p class="disclaimer">브랜드는 초기 참고 목록이며 공식 전체 목록과 대조·갱신 중입니다.</p></section><section id="tiers" class="section tiers"><span class="eyebrow">LOYALTY PROGRAMS</span><h2>멤버십 티어 가이드</h2><p>등급 혜택은 검증 후 게시합니다. 아래 링크는 각 프로그램의 공식 웹사이트입니다.</p><div id="loyalty" class="loyalty"></div></section></main><footer>© <span id="year"></span> Hotel Atlas · Independent project · Not affiliated with hotel groups.</footer><script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script><script type="module" src="/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Hotel Atlas · UAE edition</title>
+<meta name="description" content="Hotel elite status for UAE residents: tier guides for Marriott, Hilton, Hyatt, IHG and Accor, UAE hotel credit cards, current promotions and a map of 31,000 chain hotels.">
+<meta property="og:title" content="Hotel Atlas · UAE edition">
+<meta property="og:description" content="Hotel elite status, worked out for UAE residents.">
+<meta name="color-scheme" content="light dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-inner">
+    <a class="logo" href="/" aria-label="Hotel Atlas home">Hotel<span>Atlas</span></a>
+    <span class="edition-chip" title="Benefits and cards are checked for UAE residents">UAE edition</span>
+    <nav aria-label="Sections">
+      <a href="#tiers">Tier guide</a>
+      <a href="#cards">Cards</a>
+      <a href="#promos">Promotions</a>
+      <a href="#map-section">Hotel map</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="intro wrap">
+    <h1>Hotel status, worked out for UAE residents.</h1>
+    <p class="lede">Which tier unlocks breakfast and lounges at Marriott, Hilton, Hyatt, IHG and Accor, which UAE cards get you there faster, and what is on offer this month.</p>
+    <p class="checked" id="checkedLine">Checked against official sources</p>
+  </section>
+
+  <section class="hub wrap" aria-label="Overview">
+    <a class="tile tile-tiers" href="#tiers">
+      <div class="tile-head"><h2>Tier guide</h2><span class="go" aria-hidden="true">→</span></div>
+      <p class="tile-sub">Where breakfast starts in each program</p>
+      <ol class="ladders" id="hubLadders"></ol>
+    </a>
+    <a class="tile tile-promos" href="#promos">
+      <div class="tile-head"><h2>Promotions</h2><span class="big num" id="hubPromoCount">–</span></div>
+      <p class="tile-sub">Open now for stays in the UAE</p>
+      <ul class="mini-list" id="hubPromos"></ul>
+    </a>
+    <a class="tile tile-map" href="#map-section">
+      <div class="tile-head"><h2>Five-chain map</h2><span class="go" aria-hidden="true">→</span></div>
+      <p class="big num" id="hubHotelCount">–</p>
+      <p class="tile-sub" id="hubHotelSub">chain hotels worldwide</p>
+      <div class="chain-dots" id="hubChainDots"></div>
+    </a>
+    <a class="tile tile-cards" href="#cards">
+      <div class="tile-head"><h2>UAE hotel cards</h2><span class="big num" id="hubCardCount">–</span></div>
+      <p class="tile-sub">Cards issued in the UAE that earn hotel points or status</p>
+      <ul class="mini-list" id="hubCards"></ul>
+    </a>
+    <a class="tile tile-compare" href="#compare">
+      <div class="tile-head"><h2>Compare tiers</h2><span class="go" aria-hidden="true">→</span></div>
+      <p class="tile-sub">Nights needed, breakfast and lounge access side by side</p>
+      <div class="compare-bars" id="hubBars" aria-hidden="true"></div>
+    </a>
+  </section>
+
+  <section id="tiers" class="section wrap">
+    <div class="section-head">
+      <h2>Tier guide</h2>
+      <p>Each program's ladder for the 2026 qualification year, with the benefits that matter on a stay and the rules that apply at hotels in the UAE.</p>
+    </div>
+    <div class="table-wrap" id="compare">
+      <table class="compare">
+        <caption>Where the useful benefits start</caption>
+        <thead><tr><th scope="col">Program</th><th scope="col">Breakfast from</th><th scope="col">Lounge from</th><th scope="col">Top tier</th></tr></thead>
+        <tbody id="compareBody"></tbody>
+      </table>
+    </div>
+    <div class="programs" id="programs"></div>
+  </section>
+
+  <section id="cards" class="section wrap">
+    <div class="section-head">
+      <h2>UAE hotel cards</h2>
+      <p>Credit cards issued by UAE banks that earn hotel points or come with elite status. Fees and salary minimums are as the bank lists them; offers change often, so confirm on the bank's page before applying.</p>
+    </div>
+    <div class="card-grid" id="cardGrid"></div>
+    <p class="note" id="cardsNote"></p>
+  </section>
+
+  <section id="promos" class="section wrap">
+    <div class="section-head">
+      <h2>Promotions</h2>
+      <p>Offers open now that count for stays at hotels in the UAE. Most need registration before the stay.</p>
+    </div>
+    <div class="promo-list" id="promoList"></div>
+    <p class="note" id="promosNote"></p>
+  </section>
+
+  <section id="map-section" class="section wrap">
+    <div class="section-head">
+      <h2>Hotel map</h2>
+      <p>Marriott, Hilton, Hyatt, IHG and Accor hotels from open data. Locations aren't verified; check the official page before you book.</p>
+    </div>
+    <div class="controls">
+      <label class="sr-only" for="hotelSearch">Search hotels or cities</label>
+      <input id="hotelSearch" type="search" placeholder="Hotel, city or country — e.g. Dubai" autocomplete="off">
+      <label class="sr-only" for="hotelGroup">Program</label>
+      <select id="hotelGroup"><option value="">All programs</option></select>
+      <button class="chip-btn" id="uaeOnly" type="button" aria-pressed="false">UAE only</button>
+    </div>
+    <div id="map" class="hotel-map" role="region" aria-label="Hotel map"></div>
+    <p id="mapHint" class="map-hint">Move or zoom the map to explore.</p>
+    <div class="mapmeta"><strong id="hotelCount" class="num">0 hotels</strong><span id="dataStatus">Loading hotel data…</span></div>
+    <div id="hotelResults" class="hotel-results"></div>
+    <div class="pagination"><button id="prevPage" type="button">Previous</button><span id="pageStatus" class="num">0 / 0</span><button id="nextPage" type="button">Next</button></div>
+    <p class="note">Hotel locations: <a href="https://www.alltheplaces.xyz/" target="_blank" rel="noopener">All the Places</a> (CC0) and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL). Upstream Marriott data is still missing JW Marriott, W Hotels, Westin, Autograph Collection, The Luxury Collection and Tribute Portfolio.</p>
+  </section>
+
+  <section class="section wrap sources" id="sources">
+    <h2>Sources</h2>
+    <p>Every benefit, card and promotion on this page links to where it was checked. Programs change terms during the year; the official page always wins.</p>
+    <ul id="sourceList"></ul>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>© <span id="year"></span> Hotel Atlas · Independent. Not affiliated with or endorsed by any hotel group or bank.</p>
+  <p class="loyalty-links" id="loyalty"></p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script type="module" src="/app.js"></script>
+</body>
+</html>
