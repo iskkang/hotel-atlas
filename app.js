@@ -73,7 +73,7 @@ function renderHub() {
   const dots = $('hubChainDots');
   for (const g of groups) {
     const s = el('span');
-    s.append(dot(g.id), g.program.replace(/^(ALL – |World of |IHG One )/, ''));
+    s.append(dot(g.id), (edition.programs.find((x) => x.id === g.id) || {}).short || g.name);
     dots.append(s);
   }
 }
