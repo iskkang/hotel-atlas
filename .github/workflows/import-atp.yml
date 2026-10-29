@@ -1,0 +1,28 @@
+name: Import All the Places hotels
+on:
+  workflow_dispatch:
+  schedule:
+    # All the Places publishes a new run weekly; refresh every Tuesday.
+    - cron: '30 3 * * 2'
+permissions:
+  contents: write
+concurrency:
+  group: atp-import
+  cancel-in-progress: false
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Import latest All the Places run
+        run: python scripts/import_atp.py
+      - name: Commit catalog
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/hotels_atp.json
+          if ! git diff --cached --quiet; then git commit -m "Import All the Places hotels"; git push; fi

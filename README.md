@@ -4,13 +4,24 @@ Static, Netlify-ready hotel discovery MVP, hosted at https://hotelatlas.netlify.
 
 ## What works
 - Search and filter starter brand catalog for Marriott, Hilton, Hyatt, IHG and Accor.
-- Browse OSM-sourced hotel candidates on a Leaflet map, filter by group, name and city.
-- See an OSM source link per property and required attribution.
+- Browse about 31,000 chain hotels on a Leaflet map, filter by group, name and city.
+- Hotel data comes from two open sources: All the Places (CC0) and OpenStreetMap (ODbL). OSM records within ~150 m of an All the Places hotel from the same group are merged in the browser.
+- Each property links to its official chain page (All the Places) or its OSM source.
 - Link to official loyalty program websites.
 
-**Current hotel count starts at zero.** This is intentional: no fabricated hotels or unverified benefits. A real regional OSM extract must be imported before pins appear.
+No fabricated hotels or unverified benefits: every pin comes from one of the two open datasets.
 
-## Import actual hotel data
+## Import hotel data
+
+### All the Places (main source)
+- `data/hotels_atp.json` holds Marriott, Hilton, Hyatt, IHG and Accor hotels from the weekly [All the Places](https://www.alltheplaces.xyz/) run (CC0, no attribution required; credited anyway).
+- GitHub Actions → **Import All the Places hotels** refreshes it every Tuesday, or on demand. It downloads the latest per-spider GeoJSON; it never contacts hotel chain websites.
+- A spider whose new count drops below 70% of the current file is skipped and its previous records are kept.
+- Local run: `python scripts/import_atp.py` (or `--from-dir DIR` with `<spider>.geojson` files).
+- Seeded from the 2026-10-10 run (Hilton from 2026-08-29).
+- Known gap: upstream Marriott data is missing JW Marriott, W Hotels and Westin (a spider bug) and Autograph Collection, The Luxury Collection and Tribute Portfolio (excluded by policy). A fix for All the Places is ready in `docs/upstream/` (patch + PR text) and still needs to be submitted to `alltheplaces/alltheplaces`; the weekly import picks it up once merged.
+
+### OpenStreetMap (supplement)
 1. Open GitHub Actions → **Import OSM hotel extract (manual)** → Run workflow.
 2. Supply an HTTPS regional `.osm.pbf` URL from https://download.geofabrik.de/ (start with a small region).
 3. The workflow downloads that extract, conservatively matches properties using OSM brand/operator tags, and commits `data/hotels.json` to `main`.
