@@ -13,7 +13,7 @@ import re
 import osmium
 
 GROUPS = {
-    "marriott": ["marriott", "jw marriott", "ritz-carlton", "st. regis", "sheraton", "westin", "w hotels", "le méridien", "renaissance", "courtyard", "fairfield", "aloft", "moxy", "residence inn"],
+    "marriott": ["marriott", "jw marriott", "ritz-carlton", "st. regis", "sheraton", "westin", "w hotels", "le méridien", "renaissance", "courtyard", "fairfield", "aloft", "moxy", "residence inn", "autograph collection", "luxury collection", "tribute portfolio"],
     "hilton": ["hilton", "waldorf astoria", "conrad", "doubletree", "hampton", "curio collection", "canopy by hilton", "embassy suites", "lxr hotels"],
     "hyatt": ["hyatt", "andaz", "alila", "thompson hotels"],
     "ihg": ["intercontinental", "holiday inn", "crowne plaza", "hotel indigo", "kimpton", "regent", "six senses", "voco", "staybridge suites"],

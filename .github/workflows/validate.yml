@@ -19,3 +19,7 @@ jobs:
         run: |
           node --check app.js
           node --check data/brands.js
+      - name: Check hotel data files
+        run: |
+          python3 -c "import json; [json.load(open(p)) for p in ('data/hotels.json','data/hotels_atp.json')]"
+          python3 -m py_compile scripts/import_atp.py
